@@ -5,7 +5,6 @@ import difflib                     # for "did you mean" suggestions
 from src.indexer import Indexer
 from src.tokenizer import tokenize # for cleaning the user's query the same way we cleaned the page text during indexing
 
-
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', datefmt="%d/%m/%Y %H:%M:%S")
 logger = logging.getLogger(__name__)
 
