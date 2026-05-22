@@ -264,3 +264,25 @@ class TestFind:
         search.find("app!e")
         captured = capsys.readouterr()
         assert "Error" not in captured.out or "No results" in captured.out
+
+    def test_find_second_word_not_in_index(self, search, capsys):
+        """Should handle second word in multi-word query not being in index."""
+        # "apple" exists but "xdftyuiklmnbvfgj" does not
+        search.find("apple xdftyuiklmnbvfgj")
+        captured = capsys.readouterr()
+        assert "No results found" in captured.out
+
+    def test_find_no_page_contains_all_words(self, search, capsys):
+        """Should handle case where no page contains all search terms together."""
+        # "apple" only on PAGE_1, "lemon" only on PAGE_2
+        # no page has both so intersection is empty
+        search.find("apple lemon")
+        captured = capsys.readouterr()
+        assert "No pages match" in captured.out
+
+    def test_find_second_word_suggests_correction(self, search, capsys):
+        """Should suggest correction when second word in query is not found but similar word exists."""
+        # "apple" exists, "appel" is a typo of "apple" but treated as second word
+        search.find("orange appel")
+        captured = capsys.readouterr()
+        assert "Did you mean" in captured.out

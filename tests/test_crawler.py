@@ -183,6 +183,16 @@ class TestFetch:
             self.crawler._fetch("https://quotes.toscrape.com")
             assert mock_get.call_count == self.crawler.max_retries
 
+    @patch("src.crawler.time.sleep")
+    def test_retries_on_connection_error(self, mock_sleep):
+        """Should retry on connection error."""
+        import requests as req
+        with patch.object(
+            self.crawler.session, "get",
+            side_effect=req.exceptions.ConnectionError) as mock_get:
+            self.crawler._fetch("https://quotes.toscrape.com")
+            assert mock_get.call_count == self.crawler.max_retries
+
 
 class TestCrawl:
     """Integration-style tests for the full crawl method.
