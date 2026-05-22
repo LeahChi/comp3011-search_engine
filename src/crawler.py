@@ -96,7 +96,7 @@ class Crawler:
         Crawl the website using BFS and return all crawled pages.
 
         Returns:
-            A dict mapping URL -> CrawledPage for every successfully crawled page.
+        A dict mapping URL -> CrawledPage for every successfully crawled page.
         Time complexity: O(V + E) where V = pages, E = links between pages.
         """
         queue: deque[str] = deque([self.base_url])
