@@ -1,5 +1,4 @@
 # comp3011-search_engine
-# COMP3011 Search Engine
 
 A command-line search engine that crawls, indexes, and searches [quotes.toscrape.com](https://quotes.toscrape.com). Built in Python using BFS crawling, an inverted index with TF-IDF ranking, Boolean query operators, and did-you-mean suggestions.
 
@@ -28,20 +27,31 @@ Three core components work together in a pipeline:
 ---
 
 ## Architecture
-src/
-├── crawler.py      # BFS crawler with politeness window and retry logic
-├── indexer.py      # Inverted index builder with TF-IDF scoring
-├── search.py       # Query processor with ranking and Boolean operators
-├── ranking.py      # TF-IDF computation functions
-├── tokenizer.py    # Tokenization, lowercasing, stopword removal
-└── main.py         # Interactive CLI shell
-tests/
-├── test_crawler.py       # 22 unit tests
-├── test_indexer.py       # 28 unit tests
-├── test_search.py        # 32 unit tests
-└── test_integration.py   # 16 integration tests
-data/
-└── index.json      # Compiled inverted index (214 pages)
+```
+comp3011-search-engine/
+│
+├── src/
+│   ├── crawler.py        # BFS crawler with politeness window and retry logic
+│   ├── indexer.py        # Inverted index builder with TF-IDF scoring
+│   ├── search.py         # Query processor with ranking and Boolean operators
+│   ├── ranking.py        # TF-IDF computation functions
+│   ├── tokenizer.py      # Tokenization, lowercasing, stopword removal
+│   └── main.py           # Interactive CLI shell
+│
+├── tests/
+│   ├── conftest.py           # Shared pytest configuration
+│   ├── test_crawler.py       # 22 unit tests
+│   ├── test_indexer.py       # 28 unit tests
+│   ├── test_search.py        # 33 unit tests
+│   └── test_integration.py   # 16 integration tests
+│
+├── data/
+│   └── index.json        # Compiled inverted index (214 pages)
+│
+├── requirements.txt
+├── README.md
+└── .gitignore
+```
 
 ### Index Structure
 
@@ -73,7 +83,7 @@ data/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/comp3011-search-engine.git
+git clone https://github.com/LeahChi/comp3011-search_engine
 cd comp3011-search-engine
 
 # 2. Create and activate virtual environment
